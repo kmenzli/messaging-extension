@@ -1,0 +1,58 @@
+#{param name=location/}
+#{param name=temperature/}
+#{param name=locations/}
+
+<div class="messaging" style="padding: 10px" id="messaging">
+
+    <div ng-controller="messagingCtrl">
+        <div class="mode-items">
+            <span class="uiRadio">
+                <label class="radio">
+                    <input type="radio" name="stat" value="happy" ng-model="stat" ng-click="loadStat('happy')"/>
+                        <span>happy</span>
+				</label>
+            </span>
+			<span class="uiRadio">
+				<label class="radio">
+					<input type="radio" name="stat" value="crazy" ng-model="stat" ng-click="loadStat('crazy')"/>
+                        <span>crazy</span>
+				</label>
+            </span>
+			<span class="uiRadio">
+				<label class="radio">
+					<input type="radio" name="stat" value="freacky" ng-model="stat" ng-click="loadStat('freacky')"/>
+                        <span>freacky</span>
+				</label>
+            </span>
+         </div>
+
+        <form action="@{add()}" method="post" style="float:left">
+            <fieldset>
+            <div class="controls">
+            <div class="input-append">
+            <input class="span2" type="text" size="16"name="location" value=""/><button type="submit" class="btn">Add</button>
+                                </div>
+            </div>
+                        </fieldset>
+            </form>
+
+                    <div style="clear:both"/>
+
+            </div>
+
+    <div class="accordion">
+
+        <% locations.each() { current -> %>
+        <div class="accordion-group">
+            <div class="accordion-heading"><a class="accordion-toggle" href="@{index(location = current)}">${current}</a></div>
+            <% if (current == location) { %>
+            <div class="accordion-body">
+                <div class="accordion-inner">The weather temperature in ${current} is ${temperature}&deg; C.</div>
+</div>
+            <% } %>
+        </div>
+<% } %>
+
+</div>
+
+</div>
